@@ -4,3 +4,7 @@ dailyreport/activator
 dailyreport/activator-launch-1.3.7.jar
 
 dailyreport/activator.bat
+
+msauto/.idea/*
+
+msauto/*
