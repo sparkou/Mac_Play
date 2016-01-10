@@ -1,0 +1,120 @@
+[
+  {
+    "eName": "English Name",
+    "cName": "Chinese Name",
+    "email": "email",
+    "phone": "phone",
+    "qq": "qq",
+    "department": "department",
+    "leader": "leader",
+    "team": "project team",
+    "position": "position",
+    "hireDate": "hireDate",
+    "hireStatus": "Active",
+    "toStatus": "Active",
+    "holidays": [
+      {
+        "htype": "annual",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "overtime",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "affair",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "sick",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "marriage",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "maternity",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "funeral",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      }
+    ]
+
+  },
+  {
+    "eName": "English Name 1",
+    "cName": "Chinese Name 1",
+    "email": "email 1",
+    "phone": "phone 1",
+    "qq": "qq",
+    "department": "department",
+    "leader": "leader",
+    "team": "project team",
+    "position": "position",
+    "hireDate": "hireDate",
+    "hireStatus": "Active",
+    "toStatus": "Active",
+    "holidays": [
+      {
+        "htype": "annual",
+        "remain": "remain 1",
+        "standard": "standard 1",
+        "rest": "rest 1"
+      },
+      {
+        "htype": "overtime",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "affair",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "type": "sick",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "marriage",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "maternity",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      },
+      {
+        "htype": "funeral",
+        "remain": "remain",
+        "standard": "standard",
+        "rest": "rest"
+      }
+    ]
+
+  }
+]

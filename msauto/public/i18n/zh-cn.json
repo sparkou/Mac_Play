@@ -1,0 +1,44 @@
+﻿{
+    "HOME": "主页",
+    "USER": "我的",
+    "ASK_FOR_LEAVE": "请假",
+    "OVERTIME": "加班",
+    "OA_HISTORY": "历史记录",
+
+    "USER_DETAILS": "用户信息",
+    "USER_MANAGE": "修改",
+    "ENGLISH_NAME": "英文名",
+    "CHINESE_NAME": "中文名",
+    "EMAIL": "邮件",
+    "PHONE": "手机号",
+    "QQ": "QQ",
+    "DEPARTMENT": "部门",
+    "LEADER": "直属领导",
+    "TEAM": "项目组",
+    "POSITION": "职位",
+    "HIRE_DATE": "入职日期",
+    "HIRE_STATUS": "在职状态",
+    "TODAY_STATUS": "今日状态",
+
+    "HOLIDAY_DETAILS": "假日信息",
+    "VACATYPE": "类型",
+    "REMAINS": "剩余",
+    "STANDARD": "基准",
+    "REST": "测试",
+    "annual": "年假",
+    "overtime": "加班",
+    "affair": "事假",
+    "sick": "病假",
+    "marriage": "婚假",
+    "maternity": "产假",
+    "funeral": "丧假",
+
+    "USERS": "用户组",
+    "EDIT": "编辑",
+    "DELETE": "删除",
+
+    "SUBMIT": "提交",
+    "CANCEL": "取消",
+    "DETAILS": "详细"
+
+}

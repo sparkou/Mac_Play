@@ -1,0 +1,43 @@
+﻿{
+    "HOME": "Home",
+    "USER": "User",
+    "ASK_FOR_LEAVE": "Leave",
+    "OVERTIME": "Overtime",
+    "OA_HISTORY": "History",
+
+    "USER_DETAILS": "User Details",
+    "USER_MANAGE": "Manage",
+    "ENGLISH_NAME": "English Name",
+    "CHINESE_NAME": "Chinese Name",
+    "EMAIL": "Email",
+    "PHONE": "Phone",
+    "QQ": "QQ",
+    "DEPARTMENT": "Department",
+    "LEADER": "Leader",
+    "TEAM": "Team",
+    "POSITION": "Position",
+    "HIRE_DATE": "Hire Date",
+    "HIRE_STATUS": "Hire Status",
+    "TODAY_STATUS": "Today's Status",
+
+    "HOLIDAY_DETAILS": "Holiday Details",
+    "VACATYPE": "Type",
+    "REMAINS": "Remains",
+    "STANDARD": "Standard",
+    "REST": "Rest",
+    "annual": "Annual",
+    "overtime": "Overtime",
+    "affair": "Affair",
+    "sick": "Sick",
+    "marriage": "Marriage",
+    "maternity": "Maternity",
+    "funeral": "Funeral",
+
+    "USERS": "Users",
+    "EDIT": "Edt",
+    "DELETE": "Del",
+
+    "SUBMIT": "Submit",
+    "Cancel": "Cancel",
+    "DETAILS": "Details"
+}

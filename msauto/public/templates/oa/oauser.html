@@ -1,0 +1,61 @@
+<div class="row alerts-container" ng-if="alertShow">
+	<div class="col-xs-12">
+		<uib-alert type="{{alert.type}}" close="closeAlert()" dismiss-on-timeout="2000">{{alert.msg}}</uib-alert>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-6">
+		<div class="widget">
+			<div class="widget-header">
+				<i class="fa fa-user" ng-class="icon"></i> {{'USER_DETAILS' | translate}}
+				<div class="pull-right">
+					<a ng-if="!isUserManage" href="" ng-click="manageUser()">{{"USER_MANAGE" | translate}}</a>
+					<button ng-if="isUserManage" class="btn btn-sm btn-info" ng-click="okUser(user)">{{'SUBMIT' | translate}}</button>
+					<button ng-if="isUserManage" class="btn btn-sm btn-warning" ng-click="cancelUser()">{{'CANCEL' | translate}}</button>
+				</div>
+			</div>
+			<div class="medium no-padding">
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+						<tr><td>{{'ENGLISH_NAME' | translate}}</td><td>{{user.eName}}</td></tr>
+						<tr><td>{{'CHINESE_NAME' | translate}}</td><td>{{user.cName}}</td></tr>
+						<tr><td>{{'EMAIL' | translate}}</td><td>{{user.email}}</td></tr>
+						<tr><td>{{'PHONE' | translate}}</td><td ng-if="!isUserManage">{{user.phone}}</td><td ng-if="isUserManage"><input ng-model="user.phone" class="form-control" type="text" placeholder="{{user.phone}}"></td></tr>
+						<tr><td>{{'QQ' | translate}}</td><td ng-if="!isUserManage">{{user.qq}}</td><td ng-if="isUserManage"><input ng-model="user.qq" class="form-control" type="text" placeholder="{{user.qq}}"></td></tr>
+						<tr><td>{{'DEPARTMENT' | translate}}</td><td ng-if="!isUserManage">{{user.department}}</td><td ng-if="isUserManage"><input ng-model="user.department" class="form-control" type="text" placeholder="{{user.department}}"></td></tr>
+						<tr><td>{{'LEADER' | translate}}</td><td ng-if="!isUserManage">{{user.leader}}</td><td ng-if="isUserManage"><input ng-model="user.leader" class="form-control" type="text" placeholder="{{user.leader}}"></td></tr>
+						<tr><td>{{'TEAM' | translate}}</td><td ng-if="!isUserManage">{{user.team}}</td><td ng-if="isUserManage"><input ng-model="user.team" class="form-control" type="text" placeholder="{{user.team}}"></td></tr>
+						<tr><td>{{'POSITION' | translate}}</td><td ng-if="!isUserManage">{{user.position}}</td><td ng-if="isUserManage"><input ng-model="user.position" class="form-control" type="text" placeholder="{{user.position}}"></td></tr>
+						<tr><td>{{'HIRE_DATE' | translate}}</td><td>{{user.hireDate}}</td></tr>
+						<tr><td>{{'HIRE_STATUS' | translate}}</td><td>{{user.hireStatus}}</td></tr>
+						<tr><td>{{'TODAY_STATUS' | translate}}</td><td>{{user.toStatus}}</td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="widget">
+			<div class="widget-header">
+				<i class="fa fa-tasks" ng-class="icon"></i> {{'HOLIDAY_DETAILS' | translate}}
+				<!--<div class="pull-right"><a href="#">Manage</a></div>-->
+			</div>
+			<div class="medium no-padding">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr><th class="text-center">{{'VACATYPE' | translate}}</th><th>{{'REMAINS' | translate}}</th><th>{{'STANDARD' | translate}}</th><th>{{'REST' | translate}}</th></tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="hday in user.holidays">
+								<td class="text-center">{{hday.htype | translate}}</td><td>{{hday.remain}}</td><td>{{hday.standard}}</td><td>{{hday.rest}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

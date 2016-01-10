@@ -1,0 +1,17 @@
+<div class="widget text-danger">
+	<div class="widget-header">
+		<i class="fa fa-user" ng-class="icon"></i> Delete User
+		<!--<div class="pull-right"><a href="" ng-click="manageUser(user)">Manage</a></div>-->
+	</div>
+	<br>
+	<div class="text-center">
+		Remove user <strong>{{user.eName}}</strong> from you system ?
+	</div>
+	<br>
+
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-warning" type="button" ng-click="ok(user)">Yes</button>
+	<button class="btn btn-primary" type="button" ng-click="cancel()">No</button>
+</div>
