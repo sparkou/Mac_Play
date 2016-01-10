@@ -1,0 +1,125 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+body {
+    padding-bottom: 30px;
+    min-width: 970px;
+}
+
+footer {
+    text-align: center;
+}
+
+.app-modal-window .modal-dialog {
+    width: 1000px;
+}
+
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+
+.bottom-border {
+    border-bottom: inset grey;
+}
+
+.report-title {
+    background: #d9d9d9;
+    border-bottom: 1.00pt solid gray;
+    border-left: 1.00pt solid gray;
+    border-top: 1.00pt solid gray;
+    color: #002060;
+    font-family: Cambria, serif;
+    font-size: 20.00pt;
+    font-style: normal;
+    font-weight: 700;
+    padding: 10px 1px;
+    text-align: center;
+    vertical-align: central
+}
+
+.report-image {
+    color: black;
+    font-family: Calibri, sans-serif;
+    font-size: 11.00pt;
+    font-style: normal;
+    font-weight: 400;
+    border: 1.00pt solid gray
+}
+
+.report-base {
+    background: #d9d9d9;
+    border-bottom: 1.00pt solid gray;
+    border-left: 1.00pt solid gray;
+    border-right: 1.00pt solid gray;
+    color: #002060;
+    font-family: Cambria, serif;
+    font-size: 12.00pt;
+    font-style: normal;
+    font-weight: 700;
+    padding: 5px 1px;
+    text-align: center;
+    vertical-align: middle
+}
+
+.report-base-data {
+    background: #d9d9d9;
+    border-bottom: 1.00pt solid gray;
+    border-right: 1.00pt solid gray;
+    /*border-top: 1.00pt solid gray;*/
+    color: black;
+    font-family: "Times New Roman", serif;
+    font-size: 12.00pt;
+    font-style: normal;
+    font-weight: 400;
+    padding: 5px 1px;
+    text-align: center;
+    vertical-align: middle
+}
+
+.report-data {
+    background: white;
+    border-bottom: 1.00pt solid gray;
+    border-right: 1.00pt solid gray;
+    /*border-top: 1.00pt solid gray;*/
+    color: black;
+    font-family: "Times New Roman", serif;
+    font-size: 12.00pt;
+    font-style: normal;
+    padding: 5px 1px;
+    text-align: center;
+    vertical-align: middle
+}
+
+.report-comment {
+    background: white;
+    border-right: 1.00pt solid gray;
+    border-top: 1.00pt solid gray;
+    border-bottom: 1.00pt inset gray;
+    color: #002060;
+    font-family: Cambria, serif;
+    font-size: 12.00pt;
+    font-style: normal;
+    font-weight: 700;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 1px;
+    text-align: left;
+    vertical-align: middle
+}
+
+.report-comment-data {
+    background: white;
+    border-bottom: 1.00pt solid gray;
+    border-right: 1.00pt solid gray;
+    /*border-top: 1.00pt solid gray;*/
+    color: black;
+    font-family: "Times New Roman", serif;
+    font-size: 12.00pt;
+    font-style: normal;
+    padding: 5px 1px 20px 1px;
+    text-align: center;
+    vertical-align: middle;
+    /*margin-bottom: 15px;*/
+}

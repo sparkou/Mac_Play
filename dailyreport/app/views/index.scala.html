@@ -1,0 +1,88 @@
+@(javascripts: Seq[String])
+<!doctype html>
+<html lang="en" ng-app="reportApp">
+<head>
+    <meta charset="utf-8">
+    <title>Daily Report</title>
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href='@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")'>
+    <link rel="stylesheet" href='@routes.Assets.versioned("lib/bootstrap/css/bootstrap-theme.css")'>
+    <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/main.css")'>
+    <!--<link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/app.min.css")'>-->
+</head>
+
+    <body ng-controller="ReportCtrl">
+        <div class="well">
+            <h2 style="text-align: center; margin-top: 50px">Daily Report</h2>
+            <hr>
+            <div class="row">
+                <div class="col-md-3"> </div>
+                <div class="col-md-1">
+                    <h5>Team: THETA</h5>
+                </div>
+                <div class="col-md-4"> </div>
+                <div class="col-md-1">
+                    <h5>Date: {{today | date: 'MM/dd/yyyy'}}</h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <table class="table table-hover">
+                        <thead>
+                            <th>Name</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="kitty in kitties">
+                                <td><a href="" ng-click="showReport(kitty)">{{kitty.name}}</a></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><a href="" ng-click="editReport(kitty)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                                <td><a href="" ng-click="removeReport(kitty)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 col-md-offset-3">
+                    <form name="nameForm">
+                        <select class="form-control" id="name" ng-model="users.name" name="name" ng-options="name for name in users.names" required></select>
+                    </form>
+                </div>
+                <div class="col-md-5">
+                    <button class="btn btn-default" ng-click="add(users.name)" ng-disabled="nameForm.name.$invalid">Add</button>
+                    <button class="btn btn-default" ng-if="kitties.length > 0" ng-click="showAll()">Show All</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Emial to &nbsp;<input typ="text" ng-model="email.address">
+                    <a ng-href="mailto:{{email.address}}?subject={{email.subject}}&body={{email.body}}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+            <div ng-view></div>
+        </div>
+        <pre>{{ data | json}}</pre>
+    </body>
+
+<script src='@routes.Assets.versioned("lib/angularjs/angular.js")' type="text/javascript"></script>
+<script src='@routes.Assets.versioned("lib/angularjs/angular-route.js")' type="text/javascript"></script>
+<script src='@routes.Assets.versioned("lib/angular-ui-bootstrap/ui-bootstrap-tpls.js")' type="text/javascript"></script>
+
+<!-- Coffee script compiled resources (generated) -->
+@for(script <- javascripts) {
+  <script src='@routes.Assets.versioned(script)' type="text/javascript"></script>
+}
+</html>

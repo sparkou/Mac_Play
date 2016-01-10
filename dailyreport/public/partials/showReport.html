@@ -1,0 +1,229 @@
+
+<div id="tab" class="tab-content">
+
+    <div id="sheet-1" style="padding: 1em 1.4em;" class="active">
+        <div class="container-fluid ">
+            <section class="">
+                <table cellspacing="0" cellpadding="0" style="border-spacing:0;" onkeydown="javascript:navigate(event);">
+                    <colgroup><col width="64">
+                        <col width="64">
+                        <col width="64">
+                        <col width="24">
+                        <col width="98">
+                        <col width="108">
+                        <col width="99">
+                        <col width="48">
+                        <col width="235">
+                        <col width="87">
+                        <col width="74">
+                        <col width="64">
+                        <col width="64">
+                        <col width="64">
+                    </colgroup>
+                    <tbody>
+                    <tr style="height:26pt">
+                        <td class="ee100" style="height:26pt;" colspan="13">
+                            Daily Report
+                        </td>
+                    <td class="ee106" style="height:26pt;vertical-align:top;">
+						<span style="z-index:1;margin-left:0px;margin-top:0px;width:47px;
+  height:35px">
+							<img src="/assets/images/ms-icon.png" width="47" height="35" alt="Description: cid:image001.png@01D14250.65830FC0">
+						</span>
+                    </td>
+                </tr>
+                <tr style="height:39pt">
+                    <td class="ee109" style="height:39pt;">
+                        Basic Info
+                    </td>
+                    <td class="ee112" style="height:39pt;">
+                        Team<font class="ee115">:</font>
+                    </td>
+                    <td class="ee116" style="height:39pt;" colspan="2">
+                        {{kitty.team}}
+                    </td>
+                    <td class="ee112" style="height:39pt;">
+                        Owner<font class="ee119">(*)</font><font class="ee115">:</font>
+                    </td>
+                    <td class="ee120" style="height:39pt;">
+                        {{kitty.name}}
+                    </td>
+                    <td class="ee121" style="height:39pt;" colspan="2">
+                        Email<font class="ee119">(*)</font><font class="ee115">:</font>
+                    </td>
+                    <td class="ee122" style="height:39pt;">
+                        <a href="mailto:'{{kitty.email}}'" target="_parent" style="color:blue;">{{kitty.email}}</a>
+                    </td>
+                    <td class="ee112" style="height:39pt;">
+                        Date<font class="ee119">(*)</font><font class="ee115">:</font>
+                    </td>
+                    <td class="ee116" style="height:39pt;" colspan="4">
+                        {{kitty.date}}
+                    </td>
+                </tr>
+                <tr style="height:16pt">
+                    <td class="ee125" style="height:16pt;" colspan="14">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <table width="100%">
+                            <tbody>
+                            <tr style="height:31pt">
+                                <td class="ee109" style="height:31pt;" rowspan="17">
+                                    Task List
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td colspan="12">
+                        <table width="100%"><tbody ng-repeat="task in kitty.tasks">
+                            <tr style="height:31pt">
+                                <td class="ee128" style="height:31pt;" colspan="2">
+                                    Case No<font class="ee119">(*)</font>
+                                </td>
+                                <td class="ee128" style="height:31pt;" colspan="4">
+                                    Case Link<font class="ee119">(*)</font>
+                                </td>
+                                <td class="ee128" style="height:31pt;" colspan="2">
+                                    Case Title
+                                </td>
+                                <td class="ee130" style="height:31pt;">
+                                    Priority<font class="ee119">(*)</font>
+                                </td>
+                                <td class="ee130" style="height:31pt;">
+                                    Status<font class="ee119">(*)</font>
+                                </td>
+                                <td class="ee130" style="height:31pt;">
+                                    Type<font class="ee119">(*)</font>
+                                </td>
+                                <td class="ee128" style="height:31pt;" colspan="2">
+                                    JIRA<font class="ee131"> </font><font class="ee132">Status</font><font class="ee119">(*)</font>
+                                </td>
+                            </tr>
+                            <tr style="height:32pt">
+                                <td class="ee133" style="height:32pt;" colspan="2">
+                                    {{task.caseNo}}
+                                </td>
+                                <td class="ee136" style="height:32pt;" colspan="4">
+                                    <a href="'{{task.caseLink}}'" target="_parent" style="color:blue;">{{task.caseLink}}</a>
+                                </td>
+                                <td class="ee139" style="height:32pt;" colspan="2">
+                                    {{task.caseTitle}}
+                                </td>
+                                <td class="ee142" style="height:32pt;">
+                                    {{task.priority}}
+                                </td>
+                                <td class="ee142" style="height:32pt;">
+                                    {{task.status}}
+                                </td>
+                                <td class="ee142" style="height:32pt;">
+                                    {{task.caseType}}
+                                </td>
+                                <td class="ee144" style="height:32pt;" colspan="2">
+                                    {{task.jiraStatus}}
+                                </td>
+                            </tr>
+                            <tr style="height:16pt">
+                                <td class="ee145" style="height:16pt;" colspan="13">
+                                    Comments<font class="ee119">(*)</font><font class="ee132">:</font>
+                                </td>
+                            </tr>
+                            <tr style="height:15pt">
+                                <td class="ee147" style="height:15pt;" colspan="13">
+                                    Root Cause:
+                                </td>
+                            </tr>
+                            <tr style="height:15pt">
+                                <td class="ee150" style="height:15pt;" colspan="13">
+                                    Meeting Calendar Attendee
+                                    relation with Event Recurrence is not right
+                                </td>
+                            </tr>
+                            <tr style="height:15pt">
+                                <td class="ee147" style="height:15pt;" colspan="13">
+                                    Solution:
+                                </td>
+                            </tr>
+                            <tr style="height:15pt">
+                                <td class="ee150" style="height:15pt;" colspan="13">
+                                    Fix relations and deal with
+                                    sequence generation issue
+                                </td>
+                            </tr>
+                            <tr style="height:15pt">
+                                <td class="ee147" style="height:15pt;" colspan="13">
+                                    File List:
+                                </td>
+                            </tr>
+                            <tr style="height:16pt">
+                                <td class="ee153" style="height:16pt;" colspan="13">
+                                    1)<font class="ee154">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </font><font class="ee155">biz\modules\framework\java\com\accela\orm\model\calendar\CalendarMeetingAttendeeModel.java</font>
+                                </td>
+                            </tr>
+                            <tr style="height:16pt">
+                                <td class="ee153" style="height:16pt;" colspan="13">
+                                    2)<font class="ee154">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </font><font class="ee155">biz\modules\framework\java\com\accela\orm\model\calendar\CalendarEventRecurrenceModel.java</font>
+                                </td>
+                            </tr>
+                            <tr style="height:16pt">
+                                <td class="ee153" style="height:16pt;" colspan="13">
+                                    3)<font class="ee154">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </font><font class="ee155">biz\modules\datamanager\java\com\accela\aa\datamanager\service\EventRecurrentceIdGeneratorImpl.java</font>
+                                </td>
+                            </tr>
+                            <tr style="height:15pt">
+                                <td class="ee147" style="height:15pt;" colspan="13">
+                                    Impact Area:
+                                </td>
+                            </tr>
+                            <tr style="height:16pt">
+                                <td class="ee153" style="height:16pt;" colspan="13">
+                                    1)<font class="ee154">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </font><font class="ee155">Data Manager Export: Reports -&gt; Meeting
+                                    Calendar</font>
+                                </td>
+                            </tr>
+                            <tr style="height:16pt">
+                                <td class="ee153" style="height:16pt;" colspan="13">
+                                    2)<font class="ee154">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </font><font class="ee155">Data Manager Import: Reports -&gt; Meeting
+                                    Calendar</font>
+                                </td>
+                            </tr>
+                            <tr style="height:15pt">
+                                <td class="ee147" style="height:15pt;" colspan="13">
+                                    UT area:
+                                </td>
+                            </tr>
+                            <tr style="height:16pt">
+                                <td class="ee153" style="height:16pt;" colspan="13">
+                                    1)<font class="ee154">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </font><font class="ee155">Data Manager Export: Reports -&gt; Meeting
+                                    Calendar</font>
+                                </td>
+                            </tr>
+                            <tr style="height:17pt">
+                                <td class="ee156" style="height:17pt;" colspan="13">
+                                    2)<font class="ee154">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </font><font class="ee155">2.</font><font class="ee157">&nbsp;&nbsp;&nbsp; </font><font class="ee155">Data Manager Import: Reports -&gt; Meeting Calendar</font>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+
+                </tbody></table>
+
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,115 @@
+<div class="modal-header">
+</div>
+
+<div class="container-fluid modal-body" ng-repeat="kitty in kitties">
+    <div class="row">
+        <div class="col-md-11 report-title">
+            Daily Report
+        </div>
+        <div class="col-md-1 report-image">
+            <!--<span style="z-index:1;margin-left:0px;margin-top:0px;width:83px;height:60px;padding-left:1px">-->
+                <!--<img src="/assets/images/ms-icon.png" width="81" height="58" alt="Missionsky" style="padding-left: 1px;margin-left: 0px;position: inherit">-->
+            <!--</span>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 report-base">
+            Basic Info
+        </div>
+        <div class="col-md-1 report-base">
+            Team:
+        </div>
+        <div class="col-md-1 report-base-data">
+            {{kitty.team}}
+        </div>
+        <div class="col-md-1 report-base">
+            Owner:
+        </div>
+        <div class="col-md-1 report-base-data">
+            {{kitty.name}}
+        </div>
+        <div class="col-md-1 report-base">
+            Email:
+        </div>
+        <div class="col-md-3 report-base-data">
+            <a href="mailto:'{{kitty.email}}'" target="_parent" style="color:blue;">{{kitty.email}}</a>
+        </div>
+        <div class="col-md-1 report-base">
+            Date:
+        </div>
+        <div class="col-md-2 report-base-data">
+            {{kitty.date}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 report-base">
+            Task List
+        </div>
+        <div class="col-md-11">
+            <div class="row" ng-repeat="task in kitty.tasks">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-1 report-base">
+                            Case No
+                        </div>
+                        <div class="col-md-3 report-base">
+                            Case Link
+                        </div>
+                        <div class="col-md-3 report-base">
+                            Case Title
+                        </div>
+                        <div class="col-md-1 report-base">
+                            Priority
+                        </div>
+                        <div class="col-md-1 report-base">
+                            Status
+                        </div>
+                        <div class="col-md-1 report-base">
+                            Type
+                        </div>
+                        <div class="col-md-2 report-base">
+                            JIRA Status
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 report-data">
+                            {{task.caseNo}}
+                        </div>
+                        <div class="col-md-3 report-data">
+                            <a href="'{{task.caseLink}}'" target="_parent" style="color:blue;">{{task.caseLink}}</a>
+                        </div>
+                        <div class="col-md-3 report-data">
+                            {{task.caseTitle}}
+                        </div>
+                        <div class="col-md-1 report-data">
+                            {{task.priority}}
+                        </div>
+                        <div class="col-md-1 report-data">
+                            {{task.status}}
+                        </div>
+                        <div class="col-md-1 report-data">
+                            {{task.caseType}}
+                        </div>
+                        <div class="col-md-2 report-data">
+                            {{task.jiraStatus}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 report-comment">
+                            Comments:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 report-comment-data">
+                            {{task.comments}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
