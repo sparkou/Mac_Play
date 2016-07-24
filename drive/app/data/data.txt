@@ -1,0 +1,8 @@
+Tag: 915555227
+Data: Map(ID -> 1, NAME -> Typesafe, URL -> http://typesafe.com/, CREATED_AT -> 2016-07-20 00:04:52.246)
+Tag: -1821773821
+Data: Map(ID -> 2, NAME -> Oracle, URL -> http://www.oracle.com/, CREATED_AT -> 2016-07-20 00:04:52.246)
+Tag: -738382407
+Data: Map(ID -> 3, NAME -> Google, URL -> http://www.google.com/, CREATED_AT -> 2016-07-20 00:04:52.246)
+Tag: 1681025371
+Data: Map(ID -> 4, DELETED_AT -> 2016-07-23 13:59:33.026, CREATED_AT -> 2016-07-20 00:04:52.246, URL -> http://www.microsoft.com/, NAME -> Microsoft)
