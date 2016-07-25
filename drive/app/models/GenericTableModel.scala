@@ -1,11 +1,11 @@
 package models
 
-import java.io.{ File, PrintWriter }
+import java.io.{ FileNotFoundException, IOException, File, PrintWriter }
 
-import scala.xml.{ Text, XML, Elem, Node }
-import scalikejdbc.DB
+import scalikejdbc.{ DB, _ }
 import scalikejdbc.metadata.Table
-import scalikejdbc._
+
+import scala.xml.{ SAXException, Elem, Node, XML }
 
 /**
  * Created by ouspark on 7/21/16.
@@ -87,39 +87,33 @@ object GenericDataModel {
     root
   }
   def add2Root(n: Node, newChild: Node) = n match {
-    case Elem(prefix, label, attribs, scope, child @ _*) =>
-      Elem(prefix, label, attribs, scope, child ++ nchild: _*)
-    case _ => sys.error("Can only add children to elements")
+    case Elem(prefix, label, attribs, scope, child @ _*) if (!child.exists(_.attributes("tag").text == newChild.attributes("tag").text)) =>
+      Elem(prefix, label, attribs, scope, child.isEmpty, child ++ newChild: _*)
+    case Elem(prefix, label, attribs, scope, child @ _*) if (child.exists(_.attributes("tag").text == newChild.attributes("tag").text)) =>
+      Elem(prefix, label, attribs, scope, child.isEmpty, child: _*)
+    case _ => throw new RuntimeException
   }
 
-  def removeSame(child: Node, newChild: Node): Unit = {
-
+  def attributeEquals(name: String, value: String)(node: Node) = {
+    node.attribute(name).filter(_.text == value).isDefined // *text* returns a text representation of the node
   }
-//  }
-//  n match {
-//      case Elem(prefix, label, attribs, scope, child @ _*) =>
-//        if(!(newChild \ "data").isEmpty) {
-//          for(child <- (newChild \ "data")) {
-//            if(!(n \ "data").contains(child)) {
-//              Elem(prefix, label, attribs, scope, child ++ newChild: _*)
-//            } else {
-//              Elem(prefix, label, attribs, scope, child ++ newChild: _*)
-//            }
-//          }
-//        }
-//      case _ => sys.error("Can only add children to elements!")
-//    }
-//  }
+
   def saveXML(pks: List[String], dataList: List[GenericDataModel]) = {
     if (!dataList.isEmpty) {
-      var root = XML.loadFile(s"app/data/${dataList.head.name}.xml")
-      if (root == null) {
-        XML.save(s"app/data/${dataList.head.name}.xml", toXML(pks, dataList))
-      } else {
-        for (data <- dataList) {
-          root = add2Root(root, data2XML(tag(pks, data.cols), data.cols))
+      try {
+        var root = XML.loadFile(s"app/data/${dataList.head.name}.xml")
+        if (root.isEmpty) {
+          XML.save(s"app/data/${dataList.head.name}.xml", toXML(pks, dataList))
+        } else {
+          for (data <- dataList) {
+            root = add2Root(root, data2XML(tag(pks, data.cols), data.cols))
+          }
+          XML.save(s"app/data/${dataList.head.name}.xml", root)
         }
-        XML.save(s"app/data/${dataList.head.name}.xml", root)
+      } catch {
+        case ex: FileNotFoundException => XML.save(s"app/data/${dataList.head.name}.xml", toXML(pks, dataList))
+        case ex: IOException => println("Had an IOException trying to read that file")
+        case ex: SAXException => XML.save(s"app/data/${dataList.head.name}.xml", toXML(pks, dataList))
       }
     }
   }
