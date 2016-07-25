@@ -29,7 +29,7 @@ object GenericTableModel {
 class GenericDataModel(tableName: String, pks: List[String], data: Map[String, Any]) {
   override def toString = "Table: " + tableName + " --- Tag: " + tag + " --- Data: " + data.toMap
   val name = tableName
-  val tag = pks.zip(for (pk <- pks) yield data(pk)).toMap.hashCode()
+  val tag = tableName + "#" + pks.zip(for (pk <- pks) yield data(pk)).toMap.hashCode
   val cols = data
 }
 
@@ -42,21 +42,35 @@ case class GenericTableRelationModel(tableName: String, relations: GenericRelati
 }
 object GenericTableRelationModel {
   def getALLTables(domainTable: GenericTableRelationModel) = {
-    val mainList = searchBy(domainTable, domainTable.relation, null)
-    GenericDataModel.saveXML(domainTable.pks, mainList)
-    for (data <- mainList) {
-      for (subTable <- domainTable.subTables) {
-        GenericDataModel.saveXML(subTable.pks, searchBy(subTable, subTable.relation, data.cols))
+    //    val mainList = searchBy(domainTable, null)
+    //    GenericDataModel.saveXML(domainTable.pks, mainList)
+    //    for (data <- mainList) {
+    //      for (subTable <- domainTable.subTables) {
+    //        GenericDataModel.saveXML(subTable.pks, searchBy(subTable, data.cols))
+    //      }
+    //    }
+  }
+
+  def getTableData(table: GenericTableRelationModel, params: Map[String, Any], parentTag: String): Unit = {
+    val dataList = searchBy(table, params)
+    if (dataList.nonEmpty) {
+      GenericDataModel.saveXML(table.pks, dataList, parentTag)
+      for (data <- dataList) {
+        if (table.subTables nonEmpty) {
+          for (t <- table.subTables) {
+            getTableData(t, data.cols, data.tag)
+          }
+        }
       }
     }
   }
 
-  def searchBy(table: GenericTableRelationModel, relation: GenericRelationModel, params: Map[String, Any])(implicit session: DBSession = AutoSession): List[GenericDataModel] = {
+  def searchBy(table: GenericTableRelationModel, params: Map[String, Any])(implicit session: DBSession = AutoSession): List[GenericDataModel] = {
     val tableName = table.name
-    val sql = GenericRelationModel.sql(relation, params)
+    val sql = GenericRelationModel.sql(table.relation, params)
     val dataList: List[Map[String, Any]] = SQL(s"select * from ${tableName}" + sql).map(_.toMap).list.apply()
     val modelList: List[GenericDataModel] =
-      for (data <- dataList) yield new GenericDataModel(tableName, table.pks /*(for (pk <- table.pks) yield data.get(pk)).hashCode().toString*/ , data)
+      for (data <- dataList) yield new GenericDataModel(tableName, table.pks, data)
     modelList
   }
 }
@@ -73,19 +87,21 @@ object GenericDataModel {
 
   def col2XML(data: Map[String, Any]) = for (key <- data.keys) yield <col name={ key }>{ data(key) }</col>
 
-  def data2XML(tag: Int, data: Map[String, Any]) = {
-    <data tag={ tag.toString }>{ col2XML(data) }</data>
+  def data2XML(tag: String, data: Map[String, Any]) = {
+    <data tag={ tag }>{ col2XML(data) }</data>
   }
-  def tag(pks: List[String], data: Map[String, Any]) = {
-    pks.zip(for (pk <- pks) yield data(pk)).toMap.hashCode()
-  }
-  def toXML(pks: List[String], dataList: List[GenericDataModel]) = {
-    var root = <root></root>
+
+  def toXML(pks: List[String], dataList: List[GenericDataModel], parentNode: Elem, parentTag: String) = {
+    var root = parentNode
+    if (root == null || root.isEmpty) {
+      root = <root></root>
+    }
     for (data <- dataList) {
-      root = add2Root(root, data2XML(tag(pks, data.cols), data.cols))
+      root = add2Root(root, data2XML(if (parentTag.isEmpty) data.tag else parentTag + "$" + data.tag, data.cols))
     }
     root
   }
+
   def add2Root(n: Node, newChild: Node) = n match {
     case Elem(prefix, label, attribs, scope, child @ _*) if (!child.exists(_.attributes("tag").text == newChild.attributes("tag").text)) =>
       Elem(prefix, label, attribs, scope, child.isEmpty, child ++ newChild: _*)
@@ -94,26 +110,16 @@ object GenericDataModel {
     case _ => throw new RuntimeException
   }
 
-  def attributeEquals(name: String, value: String)(node: Node) = {
-    node.attribute(name).filter(_.text == value).isDefined // *text* returns a text representation of the node
-  }
-
-  def saveXML(pks: List[String], dataList: List[GenericDataModel]) = {
+  def saveXML(pks: List[String], dataList: List[GenericDataModel], parentTag: String) = {
     if (!dataList.isEmpty) {
+      val tableName = dataList.head.name
       try {
-        var root = XML.loadFile(s"app/data/${dataList.head.name}.xml")
-        if (root.isEmpty) {
-          XML.save(s"app/data/${dataList.head.name}.xml", toXML(pks, dataList))
-        } else {
-          for (data <- dataList) {
-            root = add2Root(root, data2XML(tag(pks, data.cols), data.cols))
-          }
-          XML.save(s"app/data/${dataList.head.name}.xml", root)
-        }
+        val root = XML.loadFile(s"app/data/${tableName}.xml")
+        XML.save(s"app/data/${tableName}.xml", toXML(pks, dataList, root, parentTag))
       } catch {
-        case ex: FileNotFoundException => XML.save(s"app/data/${dataList.head.name}.xml", toXML(pks, dataList))
+        case ex: FileNotFoundException => XML.save(s"app/data/${dataList.head.name}.xml", toXML(pks, dataList, null, parentTag))
         case ex: IOException => println("Had an IOException trying to read that file")
-        case ex: SAXException => XML.save(s"app/data/${dataList.head.name}.xml", toXML(pks, dataList))
+        case ex: SAXException => XML.save(s"app/data/${dataList.head.name}.xml", toXML(pks, dataList, null, parentTag))
       }
     }
   }

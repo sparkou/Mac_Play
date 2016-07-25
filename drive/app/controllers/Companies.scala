@@ -21,8 +21,10 @@ class Companies @Inject() (json4s: Json4s) extends Controller {
   def all = Action {
 
     val relation = new GenericRelationModel(Map("programmer_id" -> "ID"))
-    val skillTable = new GenericTableRelationModel("programmer_skill", relation, null)
-    val mainTable = new GenericTableRelationModel("programmer", null, List(skillTable))
+    val relation1 = new GenericRelationModel(Map("id" -> "COMPANY_ID"))
+    val skillTable = new GenericTableRelationModel("programmer_skill", relation, Nil)
+    val companyTable = new GenericTableRelationModel("company", relation1, Nil)
+    val mainTable = new GenericTableRelationModel("programmer", null, List(skillTable, companyTable))
 
     //    val table = new GenericTableModel("programmer")
     //    val dataList: List[GenericDataModel] = GenericTableModel.search(table)
@@ -31,7 +33,8 @@ class Companies @Inject() (json4s: Json4s) extends Controller {
 
     //      GenericTableModel.searchBy()
     //    }
-    GenericTableRelationModel.getALLTables(mainTable)
+    //    GenericTableRelationModel.getALLTables(mainTable)
+    GenericTableRelationModel.getTableData(mainTable, null, "")
     //    GenericDataModel.saveXML(table.pks, dataList)
     //    GenericDataModel.readXML(table.name)
     //    GenericDataModel.getData(0, "company")
